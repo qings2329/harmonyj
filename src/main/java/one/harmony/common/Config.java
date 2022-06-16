@@ -11,7 +11,11 @@ import java.util.Properties;
  *
  */
 public class Config {
-	public static final String DEFAULT_URL = "http://localhost:9500/";
+//	public static final String DEFAULT_URL = "https://a.api.s0.t.hmny.io/";
+//	public static final String DEFAULT_URL = "https://rpc.s0.t.hmny.io/";
+
+	// testnet
+	public static final String DEFAULT_URL = "https://rpc.s0.b.hmny.io/";
 	public static final String DEFAULT_DIR_NAME = ".hmy_java";
 	public static final String DEFAULT_ACCOUNT_ALIAS_DIR_NAME = "accounts-keys";
 	public static final String DEFAULT_PASSPHRASE = "harmony-one";

@@ -92,8 +92,10 @@ public class Balance {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String oneAddress = "one1pdv9lrdwl0rg5vglh4xtyrv3wjk3wsqket7zxy"; // One of the harmony accounts in the localnet
-		String url = "http://127.0.0.1:9500";
+//		String oneAddress = "one1pdv9lrdwl0rg5vglh4xtyrv3wjk3wsqket7zxy"; // One of the harmony accounts in the localnet
+
+		String oneAddress = "0x5881F783576EE2C0968b0B0b24011867148fCC1a";
+		String url = Config.node;
 		System.out.println(checkLocal(url, oneAddress));
 	}
 }

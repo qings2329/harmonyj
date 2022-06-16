@@ -5,4 +5,6 @@ public class ChainID {
 	public static final int TESTNET = 2;
 	public static final int LOCAL = 2;
 	public static final int PANGAEA = 3;
+
+	public static final int DEV = 4;
 }

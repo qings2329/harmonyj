@@ -15,12 +15,17 @@ public final class RPCMethod {
 	/* Account */
 	static final String GetBalance = "hmy_getBalance";
 
+	static final String GetBalanceV2 = "hmyv2_getBalance";
+
 	/* Contract */
 	static final String GetCode = "hmy_getCode";
 	static final String Call = "hmy_call";
 
 	/* Transaction */
 	static final String GetTransactionCount = "hmy_getTransactionCount";
+
+	static final String GetGasPrice = "hmy_gasPrice";
+
 	static final String SendTransaction = "hmy_sendTransaction";
 	static final String SendRawTransaction = "hmy_sendRawTransaction";
 	static final String GetTransactionReceipt = "hmy_getTransactionReceipt";

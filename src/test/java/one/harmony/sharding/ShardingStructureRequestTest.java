@@ -1,5 +1,8 @@
 package one.harmony.sharding;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import one.harmony.rpc.ShardingStructure;
 import org.junit.jupiter.api.Test;
 import org.web3j.protocol.http.HttpService;
 
@@ -17,9 +20,13 @@ public class ShardingStructureRequestTest extends RequestTester {
 
 	@Test
 	public void testShardingStructureRequest() throws Exception {
-		rpc.getShardingStructure().send();
+		ShardingStructure shardingStructure = rpc.getShardingStructure().send();
+//		ObjectMapper objectMapper = new ObjectMapper();
+//		System.out.println(objectMapper.writeValueAsString(result));
 
-		verifyResult("{\"jsonrpc\":\"2.0\",\"method\":\"hmy_getShardingStructure\",\"params\":[],\"id\":0}");
+		System.out.println(shardingStructure.getResult());
+
+//		verifyResult("{\"jsonrpc\":\"2.0\",\"method\":\"hmy_getShardingStructure\",\"params\":[],\"id\":0}");
 	}
 
 }

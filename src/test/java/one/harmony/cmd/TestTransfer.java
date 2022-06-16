@@ -1,5 +1,13 @@
 package one.harmony.cmd;
 
+import one.harmony.common.Config;
+import one.harmony.rpc.HmyResponse;
+import one.harmony.rpc.RPC;
+import one.harmony.transaction.ChainID;
+import org.web3j.utils.Numeric;
+
+import java.math.BigInteger;
+
 public class TestTransfer {
 	private static final int LOCAL_NET = 2;
 
@@ -11,27 +19,33 @@ public class TestTransfer {
 	}
 
 	public static void main(String[] args) throws Exception {
-		testImportPrivateKey();
+//		testImportPrivateKey();
 
-		String from = "one1pdv9lrdwl0rg5vglh4xtyrv3wjk3wsqket7zxy"; // Harmony localnet addresses
-		String to = "one1pf75h0t4am90z8uv3y0dgunfqp4lj8wr3t5rsp"; // Harmony localnet addresses
-		String amount = "1";
+		String from = "one1pdv9lrdwl0rg5vglh4xtyrv3wjk3wsqket7zxy";
+		String to = "one17qf920fn7f7pzl8ts7ypk8243kg6hzn8m4mne6";
+		String amount = "1.234";
 		int fromShard = 0;
 		int toShard = 0;
 		String memo = "0x5061796d656e7420666f722078797a";
 		// Create transfer object
-		Transfer t = new Transfer(from, to, amount, fromShard, toShard);
+		String node = Config.node;
+		RPC rpc = new RPC(node);
+		HmyResponse response = rpc.getGasPrice().send();
+		BigInteger gasPrice = Numeric.toBigInt(response.getResult());
+		long gp = gasPrice.divide(BigInteger.TEN.pow(9)).longValue();
+		Transfer t = new Transfer(from, to, amount, gp, fromShard, toShard);
 		// Prepare transfer
 		String passphrase = "harmony-one";
-		String node = "http://127.0.0.1:9500";
 		t.prepare(passphrase, node); // offline, no need to connect to network
 		// Execute transfer
 		boolean dryRun = false;
 		int waitToConfirmTime = 0;
 		t.SetGas(50000);
-		String txHash = t.execute(LOCAL_NET, dryRun, waitToConfirmTime); // needs connection to network
+		String txHash = t.execute(ChainID.DEV, dryRun, waitToConfirmTime); // needs connection to network
 		// Keys.cleanKeyStore();
 		System.out.println(txHash);
 	}
+
+
 
 }
