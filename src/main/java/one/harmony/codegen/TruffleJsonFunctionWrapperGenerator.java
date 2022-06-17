@@ -73,14 +73,21 @@ public class TruffleJsonFunctionWrapperGenerator extends FunctionWrapperGenerato
 
 	public static void main(String[] args) throws Exception {
 
-		String[] fullArgs;
-		if (args.length == 5) {
-			fullArgs = new String[args.length + 1];
-			fullArgs[0] = JAVA_TYPES_ARG;
-			System.arraycopy(args, 0, fullArgs, 1, args.length);
-		} else {
-			fullArgs = args;
-		}
+		String[] fullArgs = new String[6];
+		fullArgs[0] = "--javaTypes";
+		fullArgs[1] = "/Users/xxx/jsProject/H2O/build/contracts/ERC20.json";
+		fullArgs[2] = "-p";
+		fullArgs[3] = "one.harmony.token";
+		fullArgs[4] = "-o";
+		fullArgs[5] = "/Users/xxx/javaProject/harmonyj/src/main/java";
+
+//		if (args.length == 5) {
+//			fullArgs = new String[args.length + 1];
+//			fullArgs[0] = JAVA_TYPES_ARG;
+//			System.arraycopy(args, 0, fullArgs, 1, args.length);
+//		} else {
+//			fullArgs = args;
+//		}
 
 		if (fullArgs.length != 6) {
 			exitError(USAGE);
