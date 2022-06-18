@@ -374,12 +374,12 @@ public class HarmonyMintable extends Contract {
         String name = "Harmony Token";
         String symbols = "HYMT";
         BigInteger decimals = new BigInteger("18");
-        String totalSupply = "21000000";
-        BigInteger totalSupplyWei = Convert.toWei(totalSupply, Convert.Unit.ETHER).toBigInteger();
+        BigInteger totalSupply = new BigInteger("21000000") ;
+        BigInteger totalSupplyDecimals = totalSupply.multiply(BigInteger.TEN.pow(decimals.intValue()));
 
         String from = "one1pdv9lrdwl0rg5vglh4xtyrv3wjk3wsqket7zxy";
         Handler handler = new Handler(from, Config.passphrase, Config.node, ChainID.TESTNET);
-        HarmonyMintable token = HarmonyMintable.deploy(handler, gasProvider, name, symbols, decimals, totalSupplyWei).send();
+        HarmonyMintable token = HarmonyMintable.deploy(handler, gasProvider, name, symbols, decimals, totalSupplyDecimals).send();
         String contractAddr = token.getContractAddress();
         System.out.println(contractAddr);
     }
@@ -395,8 +395,9 @@ public class HarmonyMintable extends Contract {
         String toAddr = "0x5881F783576EE2C0968b0B0b24011867148fCC1a";
         String hexToAddr = new one.harmony.account.Address(toAddr, toAddr.startsWith("0x")).getHexAddr();
 
-        String amount =  "1";
-        BigInteger amountBigInt = Convert.toWei(amount, Convert.Unit.ETHER).toBigInteger();
+        BigDecimal amount = new BigDecimal("3.123456789");
+        int decimals = 18;
+        BigInteger amountBigInt = amount.multiply(new BigDecimal(BigInteger.TEN.pow(decimals))).toBigInteger();
 
         HmyResponse response = rpc.getGasPrice().send();
         BigInteger gasPrice =  Numeric.toBigInt(response.getResult());
