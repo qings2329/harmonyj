@@ -15,7 +15,8 @@ public class Config {
 //	public static final String DEFAULT_URL = "https://rpc.s0.t.hmny.io/";
 
 	// testnet
-	public static final String DEFAULT_URL = "https://rpc.s0.b.hmny.io/";
+//	public static final String DEFAULT_URL = "https://rpc.s0.b.hmny.io/";
+	public static final String DEFAULT_URL = "https://ropsten.infura.io/v3/6f2bff361e744becb4e350d94445f91b";
 	public static final String DEFAULT_DIR_NAME = ".hmy_java";
 	public static final String DEFAULT_ACCOUNT_ALIAS_DIR_NAME = "accounts-keys";
 	public static final String DEFAULT_PASSPHRASE = "harmony-one";

@@ -280,11 +280,11 @@ public class Handler {
 		args.from = getFromAddress();
 		args.to = to;
 		args.data = data;
-		long gas = Math.max(computeIntrinsicGas(data.getBytes(), false, true), gasLimit.longValue());
-		args.gas = Numeric.encodeQuantity(BigInteger.valueOf(gas));
-		BigInteger gasPrice = BigInteger.valueOf(1).multiply(NANO);
-		args.gasPrice = Numeric.encodeQuantity(gasPrice);
-		args.value = Numeric.encodeQuantity(BigInteger.ZERO);
+//		long gas = Math.max(computeIntrinsicGas(data.getBytes(), false, true), gasLimit.longValue());
+//		args.gas = Numeric.encodeQuantity(BigInteger.valueOf(gas));
+//		BigInteger gasPrice = BigInteger.valueOf(1).multiply(NANO);
+//		args.gasPrice = Numeric.encodeQuantity(gasPrice);
+//		args.value = Numeric.encodeQuantity(BigInteger.ZERO);
 
 		HmyResponse response = this.rpc.call(args, defaultBlockParameter).send();
 		if (response.hasError()) {

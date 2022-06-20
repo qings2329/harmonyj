@@ -16,6 +16,7 @@ import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tx.gas.ContractGasProvider;
 import org.web3j.tx.gas.StaticGasProvider;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collections;
@@ -92,13 +93,18 @@ public class Erc20TokenTool extends Contract {
 
     public static void main(String args[]) throws Exception {
 //        String contractAddress = "one1tjn7gd6ur2qrs53f0euwvxqxc35c8cun4g0mzz";
-        String contractAddress = "0xfbd58c121d2d1a9190bbe15c66712b230f300bc1";
+
+//        String contractAddress = "0xfbd58c121d2d1a9190bbe15c66712b230f300bc1";
+        String contractAddress = "one1l02ccysa95dfry9mu9wxvuftyv8nqz7pn37jmc";
 //
+        //BUSD
 //        String contractAddress = "one1cjrqgc79n4v6ntavnl0rthlemgmrapp980fllp";
+
+//        String contractAddress = "0xCa1807F4d7Ce7978bEcfE34a51d261bf1432594C";
         String hexContractAddr = new one.harmony.account.Address(contractAddress, contractAddress.startsWith("0x")).getHexAddr();
 
-//        String accountAddress = "one1pdv9lrdwl0rg5vglh4xtyrv3wjk3wsqket7zxy";
         String accountAddress = "one1pdv9lrdwl0rg5vglh4xtyrv3wjk3wsqket7zxy";
+//        String accountAddress = "0x5881F783576EE2C0968b0B0b24011867148fCC1a";
         String hexAccountAddr = new one.harmony.account.Address(accountAddress, accountAddress.startsWith("0x")).getHexAddr();
 
         Handler handler = new Handler(Config.node, ChainID.TESTNET);
@@ -107,10 +113,10 @@ public class Erc20TokenTool extends Contract {
         BigInteger balance = erc20Token.balanceOf(hexAccountAddr).send();
 
 
-
-        try{
+        try {
             BigInteger decimal = erc20Token.decimals().send();
-            BigInteger ba = balance.divide(BigInteger.TEN.pow(decimal.intValue()));
+            BigDecimal pow = new BigDecimal(BigInteger.TEN.pow(decimal.intValue()));
+            BigDecimal ba = new BigDecimal(balance).divide(pow, decimal.intValue(), BigDecimal.ROUND_HALF_UP);
             System.out.println(ba);
         } catch (Exception ex) {
             ex.printStackTrace();
